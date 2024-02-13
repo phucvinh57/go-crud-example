@@ -1,0 +1,10 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {
+            "name": "Nguyen Phuc Vinh",
+            "email": "npvinh0507@gmail.com"
+        }
+    },
+    "paths": {}
+}

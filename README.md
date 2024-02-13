@@ -12,6 +12,14 @@ More about naming and organizing packages as well as other code structure recomm
 
 Package-Oriented-Design guidelines: <https://github.com/ardanlabs/gotraining/blob/master/topics/go/design/packaging/README.md>
 
+## Prerequisites
+
+- [Go](https://golang.org/dl/) v1.21.6
+- [Docker](https://docs.docker.com/get-docker/) v25.0.3
+- [Swag](https://github.com/swaggo/swag) v1.16.3: Automatically generate RESTful API documentation with Swagger 2.0 for Go
+- [Sqlc](https://github.com/sqlc-dev/sqlc) v1.25.0: Generate type safe Go queries & models from raw SQL
+- [Migrate](https://github.com/golang-migrate/migrate) v4.17.0: Database migration tool
+
 ## Go Directories
 
 ```python
@@ -27,16 +35,13 @@ Package-Oriented-Design guidelines: <https://github.com/ardanlabs/gotraining/blo
 ├── docs                # Design and user documents (in addition to your godoc generated documentation).
 ├── githooks            # Git hooks.
 ├── go.mod              # Go module file.
-├── init                # System init (systemd, upstart, sysv) and process manager/supervisor configs.
 ├── internal            # Private application and library code.
 │   ├── app                 
 │   └── pkg                 # 
 ├── Makefile
 ├── pkg                 # Library code that's ok to use by external applications (e.g., `/pkg/mypubliclib`).
 ├── scripts             # Scripts to perform various build, install, analysis, etc operations.
-├── test                # Additional external test apps and test data.
-├── third_party         # External helper tools, forked code and other 3rd party utilities.
-└── tools               # Tools and utilities.
+└── test                # Additional external test apps and test data.
 ```
 
 ### `/cmd`
@@ -85,10 +90,6 @@ Configuration file templates or default configs.
 
 Put your `confd` or `consul-template` template files here.
 
-### `/init`
-
-System init (systemd, upstart, sysv) and process manager/supervisor (runit, supervisord) configs.
-
 ### `/scripts`
 
 Scripts to perform various build, install, analysis, etc operations.
@@ -122,16 +123,6 @@ See the [`/test`](test/README.md) directory for examples.
 Design and user documents (in addition to your godoc generated documentation).
 
 See the [`/docs`](docs/README.md) directory for examples.
-
-### `/tools`
-
-Supporting tools for this project. Note that these tools can import code from the `/pkg` and `/internal` directories.
-
-See the [`/tools`](tools/README.md) directory for examples.
-
-### `/third_party`
-
-External helper tools, forked code and other 3rd party utilities (e.g., Swagger UI).
 
 ### `/githooks`
 
