@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"database/sql"
-	"github.com/phucvinh57/go-crud-example/configs"
 	_ "github.com/lib/pq"
+	"github.com/phucvinh57/go-crud-example/configs"
 )
 
 func Init() *sql.DB {

@@ -9,7 +9,7 @@ import (
 
 type PostDTO struct {
 	ID      int64  `json:"id"`
-	Title   string `json:"title" binding:"required"`
+	Title   string `json:"title" binding:"required,min=4,max=255"`
 	Content string `json:"content" binding:"required"`
 }
 
@@ -22,13 +22,6 @@ func NewArticleCrtler(db *sqlc.Queries, ctx context.Context) *ArticleCtrler {
 	return &ArticleCtrler{db, ctx}
 }
 
-// GetPost godoc
-// @Summary Get all articles
-// @Description Create a new post with the input payload
-// @Tags         Articles
-// @Accept       json
-// @Produce      json
-// @Router /articles [get]
 func (pc *ArticleCtrler) GetArticles(c *gin.Context) {
 	posts, err := pc.db.GetArticles(pc.ctx)
 	if err != nil {

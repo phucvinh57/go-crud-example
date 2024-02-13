@@ -44,4 +44,3 @@ func GetConfig() *Config {
 	}
 	return config
 }
-
