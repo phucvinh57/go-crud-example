@@ -1,10 +1,10 @@
 # note: call scripts from /scripts
 
-.PHONY: apidocs dev docker_dev clean sqlc
+.PHONY: apidocs dev docker_dev clean sqlc migrate build
 
 ENTRYPOINT := cmd/main.go
 DOCKER_DEV := docker compose -f scripts/docker-compose.dev.yml
-GEN_SWAGGER := swag init -g $(ENTRYPOINT)
+GEN_SWAGGER := swag init -d cmd -o api
 
 bootstrap:
 	go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
@@ -29,3 +29,6 @@ sqlc:
 
 migrate:
 	migrate create -ext sql -dir db/migration -seq init_schema
+
+build:
+	go build ./cmd/main.go

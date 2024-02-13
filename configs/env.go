@@ -12,8 +12,8 @@ type Config struct {
 	PgUser     string `mapstructure:"POSTGRES_USER"`
 	PgPassword string `mapstructure:"POSTGRES_PASSWORD"`
 	PgDB       string `mapstructure:"POSTGRES_DB"`
-	PgHost     string `mapstructure:"POSTGRES_HOST"`
-	PgPort     int    `mapstructure:"POSTGRES_PORT"`
+	PgHost     string `mapstructure:"POSTGRES_HOST,omitempty"`
+	PgPort     int    `mapstructure:"POSTGRES_PORT,omitempty"`
 }
 
 var config *Config
@@ -36,6 +36,12 @@ func GetConfig() *Config {
 		})
 	}
 
+	if config.PgHost == "" {
+		config.PgHost = "localhost"
+	}
+	if config.PgPort == 0 {
+		config.PgPort = 5430
+	}
 	return config
 }
 

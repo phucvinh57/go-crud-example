@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/gin-gonic/gin"
-	db "github.com/phucvinh57/go-crud-example/db/sqlc"
+	sqlc "github.com/phucvinh57/go-crud-example/db/sqlc"
 )
 
 type PostDTO struct {
@@ -14,25 +14,21 @@ type PostDTO struct {
 }
 
 type ArticleCtrler struct {
-	db  *db.Queries
+	db  *sqlc.Queries
 	ctx context.Context
 }
 
-// GetPost godoc
-// @Summary Create a new post
-// @Description Create a new post with the input payload
-// @Tags         Post
-// @Accept       json
-// @Produce      json
-// @Failure      400  {object}  httputil.HTTPError
-// @Failure      404  {object}  httputil.HTTPError
-// @Failure      500  {object}  httputil.HTTPError
-// @Router       /posts [post]
-
-func NewArticleCrtler(db *db.Queries, ctx context.Context) *ArticleCtrler {
+func NewArticleCrtler(db *sqlc.Queries, ctx context.Context) *ArticleCtrler {
 	return &ArticleCtrler{db, ctx}
 }
 
+// GetPost godoc
+// @Summary Get all articles
+// @Description Create a new post with the input payload
+// @Tags         Articles
+// @Accept       json
+// @Produce      json
+// @Router /articles [get]
 func (pc *ArticleCtrler) GetArticles(c *gin.Context) {
 	posts, err := pc.db.GetArticles(pc.ctx)
 	if err != nil {
